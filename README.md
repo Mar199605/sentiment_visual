@@ -1,2 +1,28 @@
 # sentiment_visual
 Global sentimental indicator
+
+# Global Sentiment Indicator
+
+#### Video Demo: https://youtu.be/WmVQon68vN8
+
+#### Description:
+
+This is a program collecting and analyzing tweets all over the world based on geolocations. Considering Twitter has always been a tool for the public to record their daily life, anecdote, adventures, opinions, or anything, in this case, I tried to distill some part of the information from them and process the data so that some invisible trend could be visualized.
+
+The whole processing part follows 3 steps. At first, I applied an extension named Twint, which effectively scraped tweets from Twitter. It records all the information that constitutes a tweet, including user, timestamp, content, likes, replies, hashtags, and so on. The next step is to translate them by Google translation so that various languages could be transmitted to the next stage, natural language processing. Google translation here is not a free extension so it actually limits its function of it, and during the translation process, some potential meaning can be lost and further influence results. The third step is natural language processing. Here I used the extension, TextBulb. It has a pre-trained English library for analyzing texts written in English. The advantage of TextBulb is that it is offline and fast, so it is extremely appropriate for such a prototyping program. Here I applied the sentimental analysis to determine if it is more positive or negative.
+
+For the visualization part, I used p5.js as a platform for visualizing all the data got from the processing phase. Squares are created representing a specific region. According to the geolocation, tweets from various locations can be arranged correctly. By clicking a square, visitors can see the sentimental condition of a country and also the different parts of it in the country.
+
+The global scale is my first try for this project as the resolution of data can be more blurred. The next step is to apply the same logic to various scales, such as in a city or in a building. Then it could be a benefit for a specific type of design good at adapting to the dynamic environment we daily experience.
+
+#### Presentation script:
+
+Welcome to my final project. This is my work for CS50x, completed on December 2021. During the past months, I tried to explore a series of techniques on both the front end and back end for archiving a fully functional prototype.
+
+So, let me briefly introduce my final project. It is named Global Sentiment Indicator which, as you can see, maps individuals' sentiment all around the world in a global map real-time. Btw, all the data comes from Twitter.
+
+For the front end, the squares here represent areas underneath and the numbers on the squares indicate the sentimental conditions in this area. The higher the number the more positive sentiment people hold in this specific area. Besides, there are some interactive effects to make it clearer and fun to play with. Your curser could influence the size of the squares and, once you clicked, the whole country or region you selected would be highlighted for clearer visualization.
+
+As for the back end, I applied Flask as my framework, which has been introduced on our CS50 courses, to organize my programs. The whole program comprises two python files, one is called server.py for arranging HTML files and processing requests from the front end. As you can see, when the domain is requested, it directs visitors to the index page, where squares are generated in a phrase of the script written in JavaScript and p5.js. Once the squares are generated based on their window size, their coordinate positions, x and y positions, on-screen and geo locations, latitude and longitude on the map, will immediately transmit to the server.py for requesting fresh data. This process is accomplished in Ajax. After that, the server will further send the data to tweets.py and that is where all the data is collected and analyzed. Here you can see how it is working but all the data I demonstrated heretofore is prepared in advance as this process usually costs around 2 hours. The first step is collection. This is achieved by an extension called Twint published on Github. It is an extremely efficient tool for scraping tweets based on your given condition. Here, of course, I used geolocation sent from the front end previously as my condition. It usually takes a long time for collection. The next step is translation. As we know, people speak various languages on Twitter. Therefore a powerful translation plays a significant role in the analysis. The translator I applied to is from Google Cloud. They provide a lot of useful APIs and translation is one of them. Once this step is accomplished, the data is ready to be analyzed. The last step is analysis. There comes another extension named TextBlub, which is a natural language processing program with a pre-trained English library. Although it is not completely accurate, it is fast to get a result. So, the whole pipeline produces information including text scraped from Twitter with sentimental tendencies in numerical format. The data will be sent back to the front end by Ajax syntaxes so the page could dynamically update without refreshing the page.
+
+In our information era, social media platforms connect everyone unprecedentedly close. People are constantly producing texts, images, and videos and recording their daily lives on it, which makes it a brilliant tool for analyzing trends on both a larger scale and a smaller scale. This is my simple attempt in that direction and I believe it opens a lot of opportunities in the future.
