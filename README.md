@@ -1,5 +1,3 @@
-# sentiment_visual
-Global sentimental indicator
 
 # Global Sentiment Indicator
 
